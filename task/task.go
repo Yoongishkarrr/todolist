@@ -17,7 +17,16 @@ var (
 )
 
 func GetAllTasks() []*Task {
+	mutex.Lock()
+	defer mutex.Unlock()
+	fmt.Printf("Current tasks count: %d\n", len(taskList))
 	return taskList
+}
+
+func AddTask(newTask *Task) {
+	mutex.Lock()
+	defer mutex.Unlock()
+	taskList = append(taskList, newTask) // Используйте указатель на новую задачу
 }
 
 func NewTask(description string) *Task {
@@ -28,8 +37,7 @@ func NewTask(description string) *Task {
 		ID:          taskIDCounter,
 		Description: description,
 	}
-	taskList = append(taskList, task)
-	return task
+	return task // Возвращаем новую задачу без добавления в список
 }
 
 func UpdateTask(id int, newDescription string) *Task {

@@ -12,7 +12,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// deleteCmd represents the delete command
 var deleteCmd = &cobra.Command{
 	Use:   "delete",
 	Short: "delete as delete",
@@ -26,7 +25,7 @@ var deleteCmd = &cobra.Command{
 		if success {
 			fmt.Println("Task deleted successfully")
 		} else {
-			fmt.Println("Task not found")
+			fmt.Println("Task not found")  
 		}
 	},
 }
